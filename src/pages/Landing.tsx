@@ -1,6 +1,5 @@
 import React from 'react';
 import CocktailMatch from '../components/Landing/CocktailMatch';
-// import CHLayout from "../components/Landing/CHLayout";
 import Layout from '../Layout/Layout';
 import PageCard from '../components/Common/PageCard';
 
