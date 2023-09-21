@@ -1,6 +1,3 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.scss';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Category from './pages/Category';
 import Detail from './pages/Detail';
