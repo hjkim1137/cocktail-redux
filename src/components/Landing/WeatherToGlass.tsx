@@ -1,117 +1,98 @@
-// 날씨와 매칭된 글래스옵션 api를 호출
-// 호출된 API에서 반환된 칵테일 중에서 랜덤으로 하나를 선택하여 추천하는 기능을 추가
+// // 날씨와 매칭된 글래스옵션 api를 호출
+// // 호출된 API에서 반환된 칵테일 중에서 랜덤으로 하나를 선택하여 추천하는 기능을 추가
 
-import { useEffect, useState } from 'react';
-import styles from './WeatherToGlass.module.scss';
+// import { useEffect, useState } from 'react';
+// import styles from './WeatherToGlass.module.scss';
+// import WGobject from './WGobject';
 
-const weatherToGlass = {
-  Thunderstorm: 'Coffee_mug',
-  Tornado: 'Coffee_mug',
-  Rain: 'Coffee_mug',
-  Squall: 'Coffee_mug',
-  Drizzle: 'Collins_glass',
-  Mist: 'Collins_glass',
-  Smoke: 'Collins_glass',
-  Fog: 'Collins_glass',
-  Haze: 'Collins_glass',
-  Snow: 'Irish_coffee_cup',
-  Clear: 'Cocktail_glass',
-  Clouds: 'Highball_glass',
-  Dust: 'Highball_glass',
-  Sand: 'Highball_glass',
-  Ash: 'Highball_glass',
-};
+// interface Cocktail {
+//   idDrink: string; // 칵테일 id
+//   strDrink: string; // 칵테일 이름
+//   strDrinkThumb: string; // 칵테일 이미지
+// }
 
-interface Cocktail {
-  idDrink: string;
-  strDrink: string;
-  strDrinkThumb: string;
-}
+// // 칵테일 상세 페이지와 연동을 위해 넘기는 값들(날씨, 선택된 칵테일 정보(콜백함수))
+// interface Props {
+//   weatherType: keyof typeof WGobject; // 타입이 string 이면서, 객체의 키: Thunderstorm, Tornado, Rain..
+//   // onCocktailSelected: (id: string) => void; // 반환값 없는 함수타입(인자로 string인 id)
+// }
 
-interface Props {
-  weather: keyof typeof weatherToGlass; // 타입이 string 이면서, 객체의 키: Thunderstorm, Tornado, Rain..
-  onCocktailSelected?: (id: string) => void; // 반환값 없는 함수(void)
-}
+// // React.FC 사용 지양하는 것이 좋음
+// // 리팩토링 전 - const CocktailList: React.FC<Props> = ({ weather, onCocktailSelected }) => {
+// // 리팩토링 후 - const CocktailList= ({ weather, onCocktailSelected }: Props) => {
 
-// React.FC 사용 지양하는 것이 좋음
-// 리팩토링 전 - const CocktailList: React.FC<Props> = ({ weather, onCocktailSelected }) => {
-// 리팩토링 후 - const CocktailList= ({ weather, onCocktailSelected }: Props) => {
+// // 칵테일 리스트 함수 시작
+// // cocktailMatch에서 weatherType={weatherName}과
+// // onCocktailSelected={setSelectedCocktailId} 정보 받아옴
+// function CocktailList({ weatherType }: Props) {
+//   // 랜덤 칵테일 상태 저장(초기값: null)
+//   const [cocktailInfo, setCocktailInfo] = useState<Cocktail | null>(null);
 
-// 칵테일 리스트 함수 시작
-const CocktailList = ({ weather, onCocktailSelected }: Props) => {
-  // 질문: 아래 코드 해석
-  const [cocktail, setCocktail] = useState<Cocktail | null>(null);
+//   // 해당 칵테일에 관한 구글 검색 페이지로 이동하기
+//   const handleGoogleSearch = () => {
+//     if (cocktailInfo) {
+//       const searchWord = cocktailInfo.strDrink;
+//       const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(
+//         searchWord
+//       )}`;
+//       window.open(searchUrl, '_blank');
+//     }
+//   };
 
-  // 해당 칵테일에 관한 구글 검색 페이지로 이동하기
-  const handleGoogleSearch = () => {
-    if (cocktail && cocktail.strDrink) {
-      const searchWord = cocktail.strDrink;
-      const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(
-        searchWord
-      )}`;
-      window.open(searchUrl, '_blank');
-    }
-  };
+//   // 칵테일 잔을 기준으로 한 랜덤 칵테일 정보 불러오기
+//   useEffect(() => {
+//     const fetchCocktails = async () => {
+//       const glassType = WGobject[weatherType]; // 날씨와 매칭되는 글래스 잔(기준이 됨)
+//       console.log('weather', weatherType);
 
-  useEffect(() => {
-    const fetchCocktails = async () => {
-      // 질문: 왜 weather 바로 사용은 안되고 새롭게 glassOption 변수 생성해 저장해야 하는지?
-      const glassOption = weatherToGlass[weather]; // Thunderstorm, Tornado, Rain..
+//       // glass 잔 기준 전체 칵테일 목록 통신 -> 랜덤으로 한 개 추출
+//       try {
+//         const response = await fetch(
+//           `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${glassType}`
+//         );
+//         // console.log('response', response);
+//         // Response {type: 'cors', url:'..', redirected: false, status: 200, ok: true, …}
 
-      // if (!glassOption) {
-      //   throw new Error(`Invalid weather type: ${weather}`);
-      // }
+//         const data = await response.json(); // json -> js 객체로 변환
+//         // console.log('data', data); // drinks: Array(100) -> drinks:[{...}, {...}, {...}]
 
-      try {
-        const response = await fetch(
-          `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${glassOption}`
-        );
-        // console.log('response', response);
-        // Response {type: 'cors', url:'..', redirected: false, status: 200, ok: true, …}
+//         const cocktailArr = data.drinks; // 이제 쓸 수 있는 데이터 됨 [{...}, {...}, {...}]
+//         const randomIndex = Math.floor(Math.random() * cocktailArr.length);
+//         const selectedCocktail = cocktailArr[randomIndex]; // 랜덤으로 선택된 칵테일 정보
 
-        const data = await response.json(); // 질문: 왜 json() 해줘야 하는지?
-        // console.log('data', data); // drinks: Array(100) -> drinks:[{...}, {...}, {...}]
+//         setCocktailInfo({
+//           idDrink: selectedCocktail.idDrink,
+//           strDrink: selectedCocktail.strDrink,
+//           strDrinkThumb: selectedCocktail.strDrinkThumb,
+//         });
 
-        const cocktailArr = data.drinks; // 이제 쓸 수 있는 데이터 됨 [{...}, {...}, {...}]
-        const randomIndex = Math.floor(Math.random() * cocktailArr.length);
-        const selectedCocktail = cocktailArr[randomIndex]; // 랜덤으로 선택된 칵테일 정보
+//         // 칵테일 상세페이지 탐색을 위해 칵테일ID를 상위 컴포넌트에 전달
+//       } catch (err) {
+//         console.error('error:', err);
+//       }
+//     };
+//     fetchCocktails();
+//   }, [weatherType, idDrink]);
 
-        setCocktail({
-          idDrink: selectedCocktail.idDrink,
-          strDrink: selectedCocktail.strDrink,
-          strDrinkThumb: selectedCocktail.strDrinkThumb,
-        });
+//   // 칵테일 다시 추천 버튼 눌렀을 때 로딩 문구
+//   if (!cocktailInfo) {
+//     return <div className={styles.loading}>칵테일 제조중...</div>;
+//   }
 
-        // 선택된 칵테일의 ID를 상위 컴포넌트에 전달
-        // 질문: 왜 타입이 function 인지 체크하는 지?
-        if (typeof onCocktailSelected === 'function') {
-          onCocktailSelected(selectedCocktail.idDrink);
-        }
-      } catch (err) {
-        console.error('error:', err);
-      }
-    };
-    fetchCocktails();
-  }, [weather, onCocktailSelected]);
+//   return (
+//     // 칵테일 이름, google 버튼, 칵테일 이미지를 return
+//     <div>
+//       <h4 className={styles.cocktailName}>{cocktailInfo.strDrink}</h4>
+//       <button onClick={handleGoogleSearch} className={styles.googleBtn}>
+//         칵테일 정보 Google 검색
+//       </button>
+//       <img
+//         src={cocktailInfo.strDrinkThumb}
+//         alt={cocktailInfo.strDrink}
+//         className={styles.drinkImg}
+//       />
+//     </div>
+//   );
+// }
 
-  // 칵테일 다시 추천 버튼 눌렀을 때 로딩 문구
-  if (!cocktail) {
-    return <div className={styles.loading}>칵테일 제조중...</div>;
-  }
-
-  return (
-    <div>
-      <h4 className={styles.cocktailName}>{cocktail.strDrink}</h4>
-      <button onClick={handleGoogleSearch} className={styles.googleBtn}>
-        칵테일 정보 Google 검색
-      </button>
-      <img
-        src={cocktail.strDrinkThumb}
-        alt={cocktail.strDrink}
-        className={styles.drinkImg}
-      />
-    </div>
-  );
-};
-
-export default CocktailList;
+// export default CocktailList;

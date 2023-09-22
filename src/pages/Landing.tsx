@@ -1,4 +1,4 @@
-import CocktailMatch from '../components/Landing/CocktailMatch';
+import { GetWeather, GetCocktail } from '../components/Landing/final';
 import Layout from '../Layout/Layout';
 import PageCard from '../components/Common/PageCard';
 
@@ -6,7 +6,8 @@ function Landing() {
   return (
     <Layout>
       <PageCard>
-        <CocktailMatch></CocktailMatch>
+        <GetCocktail></GetCocktail>
+        <GetWeather></GetWeather>
       </PageCard>
     </Layout>
   );
