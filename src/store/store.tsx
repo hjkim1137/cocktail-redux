@@ -2,13 +2,16 @@ import { configureStore } from '@reduxjs/toolkit';
 import coordinatesReducer from './coordinatesSlice';
 import isCheckedReducer from './isCheckedSlice';
 import searchResultsReducer from './searchResultsSlice';
+import weatherReducer from './weatherSlice';
+import cocktailReducer from './cocktailSlice';
 
 const store = configureStore({
   reducer: {
     coordinates: coordinatesReducer,
-    // 다른 슬라이스들도 추가할 수 있음
     isChecked: isCheckedReducer,
     searchResults: searchResultsReducer,
+    weather: weatherReducer,
+    cocktail: cocktailReducer,
   },
 });
 
