@@ -39,7 +39,7 @@ function GetWeather() {
   const { name, main, weather: weatherDetails } = weatherInfo;
   const { description, icon } = weatherDetails[0];
   const temperature = `${main.temp.toFixed(0)} °C`;
-  const iconUrl = `http://openweathermap.org/img/wn/${icon}.png`;
+  const iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
   const weatherName = weatherDetails[0].main;
 
   const handleLocationBtnClick = () => {
