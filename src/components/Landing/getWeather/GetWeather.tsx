@@ -73,7 +73,7 @@ function GetWeather() {
           className={styles.weatherIcon}
         ></img>
       </div>
-      <h3 className={styles.h3}>[{description}] 날씨에 어울리는 칵테일</h3>
+      <h3 className={styles.h3}>[{description}] 날씨에 어울리는 칵테일 🍸</h3>
       <GetCocktail weatherName={weatherName}></GetCocktail>
     </div>
   );
