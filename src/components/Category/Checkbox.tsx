@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CATEGORY from './Constant';
 import { RootState, AppDispatch } from '../../store/store';
-import { setIsChecked } from '../../store/isCheckedSlice';
+import { setIsChecked } from '../../features/isCheckedSlice';
 import styles from './Checkbox.module.scss';
 
 interface checkBoxPropsType {

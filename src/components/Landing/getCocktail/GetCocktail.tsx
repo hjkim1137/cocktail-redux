@@ -1,7 +1,7 @@
 import MakeBtns from '../makeBtns/MakeBtns';
 import { useEffect, useState } from 'react';
 import WGobject from './WGobject';
-import styles from './CocktailMatch.module.scss';
+import styles from '../landing.module.scss';
 import { GetCocktailProps, Cocktail } from './getCocktail.interface';
 
 function GetCocktail({ weatherName }: GetCocktailProps) {

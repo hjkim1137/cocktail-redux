@@ -1,4 +1,4 @@
-import styles from './CocktailMatch.module.scss';
+import styles from '../landing.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { MakeBtnsProps } from './makeBtns.interface';
 

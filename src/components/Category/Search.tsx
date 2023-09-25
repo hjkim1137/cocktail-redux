@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState, AppDispatch } from '../../store/store';
-import { setSearchResults } from '../../store/searchResultsSlice';
+import { setSearchResults } from '../../features/searchResultsSlice';
 import styles from './Search.module.scss';
 
 type cocktailListType = {
