@@ -10,11 +10,12 @@ const store = configureStore({
     coordinates: coordinatesReducer,
     isChecked: isCheckedReducer,
     searchResults: searchResultsReducer,
+
     weather: weatherReducer,
     cocktail: cocktailReducer,
   },
 });
 
-export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;
 export { store };

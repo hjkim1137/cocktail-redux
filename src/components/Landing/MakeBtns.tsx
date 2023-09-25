@@ -1,21 +1,15 @@
-// components/MakeBtns.tsx
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import styles from './CocktailMatch.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { RootState } from '../../store/store';
-import styles from './MakeBtns.module.scss';
 
-function MakeBtns() {
-  const navigate = useNavigate();
+interface MakeBtnsProps {
+  cocktailId: string;
+  cocktailName: string;
+  reloadCocktail: () => void;
+}
 
-  const cocktailId = useSelector(
-    (state: RootState) => state.cocktail.cocktailInfo?.idDrink
-  );
-  const cocktailName = useSelector(
-    (state: RootState) => state.cocktail.cocktailInfo?.strDrink
-  );
-
+function MakeBtns({ cocktailId, cocktailName, reloadCocktail }: MakeBtnsProps) {
   // 구글 검색 기능
+  const navigate = useNavigate();
   const handleGoogleSearch = () => {
     if (cocktailName) {
       const searchWord = cocktailName;
@@ -36,9 +30,8 @@ function MakeBtns() {
   };
 
   // 다시 추천 받기
-  const [reloadKey, setReloadKey] = useState(0);
   const handleButtonClickForReload = () => {
-    setReloadKey((prevKey) => prevKey + 1);
+    reloadCocktail();
   };
 
   return (
@@ -47,7 +40,7 @@ function MakeBtns() {
         칵테일 정보 Google 검색
       </button>
       <button onClick={handleButtonClickForDetail} className={styles.learnBtn}>
-        제조법 알아보기
+        칵테일 제조법 알아보기
       </button>
       <button onClick={handleButtonClickForReload} className={styles.againBtn}>
         다시 추천받기

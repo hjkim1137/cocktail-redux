@@ -1,4 +1,4 @@
-import { GetWeather, GetCocktail, MakeBtns } from '../components/Landing/final';
+import GetWeather from '../components/Landing/GetWeather';
 import Layout from '../Layout/Layout';
 import PageCard from '../components/Common/PageCard';
 
@@ -7,8 +7,6 @@ function Landing() {
     <Layout>
       <PageCard>
         <GetWeather></GetWeather>
-        <GetCocktail></GetCocktail>
-        <MakeBtns></MakeBtns>
       </PageCard>
     </Layout>
   );

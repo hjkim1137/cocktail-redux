@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchWeatherData, getLocation } from '../API/WeatherAPI/index';
 
 export const fetchWeather = createAsyncThunk(
@@ -8,7 +8,7 @@ export const fetchWeather = createAsyncThunk(
       const position = await getLocation();
       const { latitude, longitude } = position.coords;
       const weatherData = await fetchWeatherData(latitude, longitude);
-      return weatherData; // 상태 리턴
+      return weatherData;
     } catch (error) {
       console.error('Error:', error);
       throw error;
@@ -29,18 +29,24 @@ interface WeatherType {
   }[];
 }
 
+interface WeatherState {
+  weatherInfo: WeatherType | null;
+}
+
 // null 체크
-const initialState: WeatherType | null = null;
+const initialState: WeatherState = {
+  weatherInfo: null,
+};
 
 const weatherSlice = createSlice({
   name: 'weather',
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(fetchWeather.fulfilled, (state, action) => {
-      state = action.payload;
-    });
+  reducers: {
+    setWeatherInfo: (state, action: PayloadAction<WeatherType>) => {
+      state.weatherInfo = action.payload;
+    },
   },
 });
 
+export const { setWeatherInfo } = weatherSlice.actions;
 export default weatherSlice.reducer;
