@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import styles from './CocktailMatch.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { fetchWeatherData, getLocation } from '../../API/WeatherAPI/index';
+import { fetchWeatherData, getLocation } from '../../../API/WeatherAPI/index';
 import { useDispatch, useSelector } from 'react-redux';
-import { setWeatherInfo } from '../../store/weatherSlice';
-import { RootState } from '../../store/store';
-import GetCocktail from './GetCocktail';
+import { setWeatherInfo } from '../../../features/weatherSlice';
+import { RootState } from '../../../store/store';
+import GetCocktail from '../getCocktail/GetCocktail';
 
 function GetWeather() {
   const navigate = useNavigate();

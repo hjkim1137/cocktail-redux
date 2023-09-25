@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import coordinatesReducer from './coordinatesSlice';
-import isCheckedReducer from './isCheckedSlice';
-import searchResultsReducer from './searchResultsSlice';
-import weatherReducer from './weatherSlice';
-import cocktailReducer from './cocktailSlice';
+import coordinatesReducer from '../features/coordinatesSlice';
+import isCheckedReducer from '../features/isCheckedSlice';
+import searchResultsReducer from '../features/searchResultsSlice';
+import weatherReducer from '../features/weatherSlice';
+import cocktailReducer from '../features/cocktailSlice';
 
 const store = configureStore({
   reducer: {

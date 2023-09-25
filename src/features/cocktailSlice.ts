@@ -1,16 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import WGobject from '../components/Landing/WGobject';
-
-interface Cocktail {
-  idDrink: string;
-  strDrink: string;
-  strDrinkThumb: string;
-}
-
-interface CocktailState {
-  cocktailInfo: Cocktail | null;
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-}
+import WGobject from '../components/Landing/getCocktail/WGobject';
+import { CocktailState, Cocktail } from './cocktailSlice.interface';
 
 const initialState: CocktailState = {
   cocktailInfo: null,

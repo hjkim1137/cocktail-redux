@@ -1,19 +1,10 @@
-import MakeBtns from './MakeBtns';
+import MakeBtns from '../makeBtns/MakeBtns';
 import { useEffect, useState } from 'react';
 import WGobject from './WGobject';
 import styles from './CocktailMatch.module.scss';
-
-interface GetCocktailProps {
-  weatherName: string;
-}
+import { GetCocktailProps, Cocktail } from './getCocktail.interface';
 
 function GetCocktail({ weatherName }: GetCocktailProps) {
-  interface Cocktail {
-    idDrink: string;
-    strDrink: string;
-    strDrinkThumb: string;
-  }
-
   const [cocktailInfo, setCocktailInfo] = useState<Cocktail | null>(null);
   // 칵테일 재 추천 기능을 위한 로딩 상태 도입
   const [loading, setLoading] = useState<boolean>(true);

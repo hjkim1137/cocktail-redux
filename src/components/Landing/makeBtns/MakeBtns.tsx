@@ -1,11 +1,6 @@
 import styles from './CocktailMatch.module.scss';
 import { useNavigate } from 'react-router-dom';
-
-interface MakeBtnsProps {
-  cocktailId: string;
-  cocktailName: string;
-  reloadCocktail: () => void;
-}
+import { MakeBtnsProps } from './makeBtns.interface';
 
 function MakeBtns({ cocktailId, cocktailName, reloadCocktail }: MakeBtnsProps) {
   // 구글 검색 기능

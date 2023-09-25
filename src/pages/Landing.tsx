@@ -1,4 +1,4 @@
-import GetWeather from '../components/Landing/GetWeather';
+import GetWeather from '../components/Landing/getWeather/GetWeather';
 import Layout from '../Layout/Layout';
 import PageCard from '../components/Common/PageCard';
 

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchWeatherData, getLocation } from '../API/WeatherAPI/index';
+import { WeatherType, WeatherState } from './weatherSlice.interface';
 
 export const fetchWeather = createAsyncThunk(
   'weather/fetchWeather',
@@ -15,23 +16,6 @@ export const fetchWeather = createAsyncThunk(
     }
   }
 );
-
-// 상태로 저장되는 weatherData의 타입 명시
-interface WeatherType {
-  name: string;
-  main: {
-    temp: number;
-  };
-  weather: {
-    main: any;
-    description: string;
-    icon: string;
-  }[];
-}
-
-interface WeatherState {
-  weatherInfo: WeatherType | null;
-}
 
 // null 체크
 const initialState: WeatherState = {

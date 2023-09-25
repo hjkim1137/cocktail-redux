@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import DaumPostcode from 'react-daum-postcode';
 import { GeocoderAPI } from '../../API/WeatherAPI/index';
 import { useDispatch, Provider } from 'react-redux';
-import { setCoordinates } from '../../store/coordinatesSlice';
+import { setCoordinates } from '../../features/coordinatesSlice';
 import { RootState, store } from '../../store/store';
 import styles from './SearchAddress.module.scss';
 
