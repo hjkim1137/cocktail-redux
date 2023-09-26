@@ -32,13 +32,13 @@ function MakeBtns({ cocktailId, cocktailName, reloadCocktail }: MakeBtnsProps) {
   return (
     <div className={styles.buttonBox}>
       <button onClick={handleGoogleSearch} className={styles.googleBtn}>
-        칵테일 정보 Google 검색
+        칵테일 Google 검색
       </button>
       <button onClick={handleButtonClickForDetail} className={styles.learnBtn}>
-        칵테일 제조법 알아보기
+        제조법 알아보기
       </button>
       <button onClick={handleButtonClickForReload} className={styles.againBtn}>
-        다시 추천받기
+        재추천받기
       </button>
     </div>
   );
