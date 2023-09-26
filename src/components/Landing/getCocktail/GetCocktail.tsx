@@ -10,7 +10,7 @@ function GetCocktail({ weatherName }: GetCocktailProps) {
   const [loading, setLoading] = useState<boolean>(true);
 
   const fetchCocktails = async () => {
-    setLoading(true); // 로딩 시작
+    setLoading(true); // 칵테일 정보 로딩 시작
     const glassType: any = WGobject[weatherName];
     try {
       const response = await fetch(
@@ -39,6 +39,8 @@ function GetCocktail({ weatherName }: GetCocktailProps) {
     fetchCocktails();
   };
 
+  // 날씨에(의존성) 따라서 칵테일 정보가 달라짐
+  // useEffect 바깥에서 fetchCocktails 호출 할 수 없기 때문에 따로 코드를 빼주었음
   useEffect(() => {
     fetchCocktails();
   }, [weatherName]);
@@ -46,7 +48,7 @@ function GetCocktail({ weatherName }: GetCocktailProps) {
   return (
     <>
       {loading ? (
-        <div className={styles.loading}>새로운 칵테일 추천 중...🍸</div>
+        <div className={styles.loading}>칵테일 추천 중...🍸</div>
       ) : cocktailInfo ? (
         <>
           <h4 className={styles.cocktailName}>{cocktailInfo.strDrink}</h4>
@@ -62,7 +64,7 @@ function GetCocktail({ weatherName }: GetCocktailProps) {
           />
         </>
       ) : (
-        <div className={styles.loading}>칵테일 제조중...🍸</div>
+        <div className={styles.loading}>칵테일 정보 수신 불가</div>
       )}
     </>
   );

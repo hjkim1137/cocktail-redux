@@ -7,7 +7,7 @@ const initialState: CocktailState = {
   status: 'idle',
 };
 
-export const fetchCocktail = createAsyncThunk<Cocktail, string>(
+const fetchCocktail = createAsyncThunk<Cocktail, string>(
   'cocktail/fetchCocktail',
   async (weatherName) => {
     const glassType: any = WGobject[weatherName];
