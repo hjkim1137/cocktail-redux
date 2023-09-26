@@ -2,12 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import WGobject from '../components/Landing/getCocktail/WGobject';
 import { CocktailState, Cocktail } from './cocktailSlice.interface';
 
-const initialState: CocktailState = {
-  cocktailInfo: null,
-  status: 'idle',
-};
-
-const fetchCocktail = createAsyncThunk<Cocktail, string>(
+export const fetchCocktail = createAsyncThunk<Cocktail, string>(
   'cocktail/fetchCocktail',
   async (weatherName) => {
     const glassType: any = WGobject[weatherName];
@@ -20,6 +15,11 @@ const fetchCocktail = createAsyncThunk<Cocktail, string>(
     return cocktailArr[randomIndex];
   }
 );
+
+const initialState: CocktailState = {
+  cocktailInfo: null,
+  status: 'idle',
+};
 
 const cocktailSlice = createSlice({
   name: 'cocktail',
