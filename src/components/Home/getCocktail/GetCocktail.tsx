@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCocktail } from '../../../features/cocktailSlice';
 import MakeBtns from '../makeBtns/MakeBtns';
-import styles from '../landing.module.scss';
+import styles from '../home.module.scss';
 import { GetCocktailProps } from './getCocktail.interface';
 import { RootState } from '../../../store/store';
 import { AppDispatch } from '../../../store/store';

@@ -1,8 +1,8 @@
-import GetWeather from '../components/Landing/getWeather/GetWeather';
+import GetWeather from '../components/Home/getWeather/GetWeather';
 import Layout from '../Layout/Layout';
 import PageCard from '../components/Common/PageCard';
 
-function Landing() {
+function Home() {
   return (
     <Layout>
       <PageCard>
@@ -12,4 +12,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default Home;

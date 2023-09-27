@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Category from './pages/Category';
 import Detail from './pages/Detail';
 import Game from './pages/Game';
-import Landing from './pages/Landing';
+import Home from './pages/Home';
 import Random from './pages/Random';
 import Weather from './pages/Weather';
 import { Provider } from 'react-redux';
@@ -13,7 +13,7 @@ function App() {
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Landing />} />
+          <Route path="/" element={<Home />} />
           <Route path="/category" element={<Category />} />
           <Route path="/random" element={<Random />} />
           <Route path="/game" element={<Game />} />

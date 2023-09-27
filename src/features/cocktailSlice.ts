@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import WGobject from '../components/Landing/getCocktail/WGobject';
+import WGobject from '../components/Home/getCocktail/WGobject';
 import { CocktailState, Cocktail } from './cocktailSlice.interface';
 
 export const fetchCocktail = createAsyncThunk<Cocktail, string>(

@@ -1,4 +1,4 @@
-import styles from '../landing.module.scss';
+import styles from '../home.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { MakeBtnsProps } from './makeBtns.interface';
 
