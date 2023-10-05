@@ -6,7 +6,8 @@
 
 ### **프로젝트 제작 시기**
 
-- 2023.05.08 ~ 05.26
+- 2023.05.08 ~ 05.26 - version.01
+- 2023.09.19 ~ 09.26 - version.02 (react-redux-toolkit 적용 리팩토링)
 
 ### **기능 명세 및 상세 역할**
 
@@ -21,4 +22,4 @@
 
 ### **프로젝트 개발 환경**
 
-- JavaScript, SCSS, React.js, TypeScript
+- React.ts, TypeScript, React-redux-toolkit, SCSS
