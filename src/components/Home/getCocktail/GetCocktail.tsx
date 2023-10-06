@@ -8,8 +8,8 @@ import { RootState } from '../../../store/store';
 import { AppDispatch } from '../../../store/store';
 
 function GetCocktail({ weatherName }: GetCocktailProps) {
-  // 트러블 슈팅: dispatch 타임 'AppDispatch' 명시 안하면
-  // const dispatch = useDispatch<AppDispatch>(); 부분에서
+  // 트러블 슈팅: const dispatch = useDispatch<AppDispatch>(); 이렇게 명시 안하면
+  // 아래 dispatch(fetchCocktail(weatherName)); 부분에서
   // 'AsyncThunkAction<Cocktail, string, AsyncThunkConfig>' 형식의 인수는
   // 'AnyAction' 형식의 매개 변수에 할당될 수 없습니다. 오류 발생
   // 이것은 기본적으로 dispatch가 기대하는 액션의 형태와 fetchCocktail(weatherName)에서
