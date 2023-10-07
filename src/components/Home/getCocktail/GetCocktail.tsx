@@ -15,7 +15,7 @@ function GetCocktail({ weatherName }: GetCocktailProps) {
   // 이것은 기본적으로 dispatch가 기대하는 액션의 형태와 fetchCocktail(weatherName)에서
   // 반환되는 액션의 형태가 일치하지 않다는 것을 의미합니다.
 
-  // 여기서 문제가 발생하는 원인은 다음과 같습니다:
+  // 여기서 문제가 발생하는 원인:
   // Redux의 store.dispatch 메서드는 기본적으로 Redux의 AnyAction 타입을 기대합니다.
   // redux-thunk 라이브러리를 사용할 때, 비동기 작업을 처리하는 thunk action creators는
   // AsyncThunkAction이라는 특수한 타입의 액션을 반환합니다. 이 타입의 액션은 AnyAction 타입과 다릅니다.
