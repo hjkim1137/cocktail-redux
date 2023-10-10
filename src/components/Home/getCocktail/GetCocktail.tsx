@@ -52,7 +52,7 @@ function GetCocktail({ weatherName }: GetCocktailProps) {
           />
         </>
       ) : (
-        <div className={styles.loading}>칵테일 정보 수신 불가</div>
+        <div className={styles.loading}>연결 오류: 칵테일 정보 수신 불가</div>
       )}
     </>
   );
