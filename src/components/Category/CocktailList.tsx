@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { AlcoholFilteredListContext } from './AlcoholicOps';
-import { RootState } from '../../store/store';
+import { RootState } from '../../app/store';
 import Pagination from '../Common/Pagination';
 import styles from './CocktailList.module.scss';
 import { useSelector } from 'react-redux';

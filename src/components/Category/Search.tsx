@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState, AppDispatch } from '../../store/store';
+import { RootState, AppDispatch } from '../../app/store';
 import { setSearchResults } from '../../features/searchResultsSlice';
 import styles from './Search.module.scss';
 

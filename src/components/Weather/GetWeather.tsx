@@ -3,7 +3,7 @@ import { fetchWeatherData, getLocation } from '../../API/WeatherAPI/index';
 import { Clock } from './Clock';
 import { Cocktail } from './Cocktail';
 import { useSelector, Provider } from 'react-redux';
-import { RootState, store } from '../../store/store';
+import { RootState, store } from '../../app/store';
 
 import { SearchAddress } from './SearchAddress';
 

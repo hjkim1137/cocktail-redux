@@ -2,25 +2,27 @@ import { useEffect } from 'react';
 import styles from '../home.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { fetchWeatherData, getLocation } from '../../../API/WeatherAPI/index';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setWeatherInfo } from '../../../features/weatherSlice';
-import { RootState } from '../../../store/store';
 import GetCocktail from '../getCocktail/GetCocktail';
+import { useAppSelector } from '../../../app/hooks';
 
 function GetWeather() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const weatherInfo = useSelector(
-    (state: RootState) => state.weather.weatherInfo
-  );
+  const handleLocationBtnClick = () => {
+    navigate(`/weather`);
+  };
 
+  const dispatch = useDispatch();
+
+  // action dispatch 하기
   useEffect(() => {
     const getCurrentWeather = async () => {
       try {
         const position = await getLocation();
         const { latitude, longitude } = position.coords;
         const weatherData = await fetchWeatherData(latitude, longitude);
-        dispatch(setWeatherInfo(weatherData));
+        dispatch(setWeatherInfo(weatherData)); // setWeatherInfo(액션명), weatherData(페이로드)
       } catch (error) {
         console.error('Error:', error);
       }
@@ -28,23 +30,24 @@ function GetWeather() {
     getCurrentWeather();
   }, [dispatch]);
 
-  // 렌더링전 로딩 문구
+  // state에 저장된 값 weatherInfo에 불러오기
+  const weatherInfo = useAppSelector((state) => state.weather.weatherInfo);
+
+  // 렌더링전 로딩 문구(null 체크)
   if (!weatherInfo) {
     return (
       <div className={styles.loadingPg}>날씨에 어울리는 칵테일 제조중...🍸</div>
     );
   }
 
-  // getCocktail에 내려 줄 변수 만들기
+  // 화면에 표시하는 UI
   const { name, main, weather: weatherDetails } = weatherInfo;
-  const { description, icon } = weatherDetails[0];
+  const { description, icon } = weatherDetails[0]; // weather 디테일을(이름 헷갈리니까 구분위해)weatherDetails에 할당
   const temperature = `${main.temp.toFixed(0)} °C`;
   const iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
-  const weatherName = weatherDetails[0].main;
 
-  const handleLocationBtnClick = () => {
-    navigate(`/weather`);
-  };
+  // getCocktail에 내려 줄 변수 만들기
+  const weatherName = weatherDetails[0].main; //날씨명(영문)
 
   return (
     <div>

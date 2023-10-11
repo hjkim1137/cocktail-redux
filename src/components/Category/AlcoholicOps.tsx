@@ -1,5 +1,5 @@
 import React, { useState, useEffect, createContext } from 'react';
-import { RootState } from '../../store/store';
+import { RootState } from '../../app/store';
 import { useSelector } from 'react-redux';
 import CheckboxAll from './CheckboxAll';
 import CocktailList from './CocktailList';

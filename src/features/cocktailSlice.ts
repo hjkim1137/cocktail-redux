@@ -34,7 +34,10 @@ export const fetchCocktail = createAsyncThunk<Cocktail, string>(
         );
       }
     } catch (error) {
-      console.error('오류가 발생했습니다:', error);
+      console.error(
+        '서버와 통신에 실패하였습니다. 나중에 다시 시도해주세요.',
+        error
+      );
       throw error;
     }
   }

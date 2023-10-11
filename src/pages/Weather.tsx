@@ -3,7 +3,7 @@ import Layout from '../Layout/Layout';
 import { SearchAddress } from '../components/Weather/SearchAddress';
 import { GetWeather } from '../components/Weather/GetWeather';
 import { Provider } from 'react-redux';
-import { store } from '../store/store';
+import { store } from '../app/store';
 import CWLayout from '../Layout/CWLayout';
 
 function Weather() {

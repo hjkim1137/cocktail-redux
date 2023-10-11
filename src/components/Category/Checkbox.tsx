@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import CATEGORY from './Constant';
-import { RootState, AppDispatch } from '../../store/store';
+import { RootState, AppDispatch } from '../../app/store';
 import { setIsChecked } from '../../features/isCheckedSlice';
 import styles from './Checkbox.module.scss';
 

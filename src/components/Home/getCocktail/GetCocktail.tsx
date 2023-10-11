@@ -1,11 +1,9 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { fetchCocktail } from '../../../features/cocktailSlice';
 import MakeBtns from '../makeBtns/MakeBtns';
 import styles from '../home.module.scss';
 import { GetCocktailProps } from './getCocktail.interface';
-import { RootState } from '../../../store/store';
-import { AppDispatch } from '../../../store/store';
+import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 
 function GetCocktail({ weatherName }: GetCocktailProps) {
   // [트러블 슈팅]
@@ -22,14 +20,14 @@ function GetCocktail({ weatherName }: GetCocktailProps) {
   // useDispatch 훅에서 반환되는 dispatch 함수의 타입을 명시적으로 AppDispatch로 지정하는 것
   // 이렇게 하면, dispatch 함수는 thunk action creators에서 반환되는 액션들도 처리할 수 있게 됨
 
-  const dispatch = useDispatch<AppDispatch>();
-  const { cocktailInfo, status } = useSelector(
-    (state: RootState) => state.cocktail
-  );
+  // useAppSelector, useAppDispatch hook 사용하기(hook 사용 안할 시 위와 같은 방법으로 해야함)
+  const { cocktailInfo, status } = useAppSelector((state) => state.cocktail);
+  const dispatch = useAppDispatch();
 
+  // action dispatch 하기
   useEffect(() => {
     if (weatherName) {
-      dispatch(fetchCocktail(weatherName)); // fetchCocktail은 비동기 작업
+      dispatch(fetchCocktail(weatherName)); // fetchCocktail은 비동기 작업(for glass기준 랜덤추천 통신)
     }
   }, [dispatch, weatherName]);
 

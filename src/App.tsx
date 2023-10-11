@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Random from './pages/Random';
 import Weather from './pages/Weather';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { store } from './app/store';
 
 function App() {
   return (
