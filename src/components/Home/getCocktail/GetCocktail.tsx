@@ -29,7 +29,7 @@ function GetCocktail({ weatherName }: GetCocktailProps) {
     if (weatherName) {
       dispatch(fetchCocktail(weatherName)); // fetchCocktail은 비동기 작업(for glass기준 랜덤추천 통신)
     }
-  }, [dispatch, weatherName]);
+  }, [dispatch, weatherName]); // dispatch, weatherName 갱신에 따라 재 렌더링
 
   return (
     <>
