@@ -3,7 +3,9 @@ import { fetchCocktail } from '../../../features/cocktailSlice';
 import MakeBtns from '../makeBtns/MakeBtns';
 import styles from '../home.module.scss';
 import { GetCocktailProps } from './getCocktail.interface';
-import { useAppSelector, useAppDispatch } from '../../../app/hooks';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../app/store';
+// import { useAppSelector, useAppDispatch } from '../../../app/hooks';
 
 function GetCocktail({ weatherName }: GetCocktailProps) {
   // [트러블 슈팅]
@@ -21,8 +23,10 @@ function GetCocktail({ weatherName }: GetCocktailProps) {
   // 이렇게 하면, dispatch 함수는 thunk action creators에서 반환되는 액션들도 처리할 수 있게 됨
 
   // useAppSelector, useAppDispatch hook 사용하기(hook 사용 안할 시 위와 같은 방법으로 해야함)
-  const { cocktailInfo, status } = useAppSelector((state) => state.cocktail);
-  const dispatch = useAppDispatch();
+  const { cocktailInfo, status } = useSelector(
+    (state: RootState) => state.cocktail
+  );
+  const dispatch = useDispatch();
 
   // action dispatch 하기
   useEffect(() => {
