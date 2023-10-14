@@ -20,13 +20,15 @@ const fetchWeatherData = async (latitude: number, longitude: number) => {
     const response = await axios.get<WeatherData>(
       `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=kr`
     );
+    // console.log('response', response);
     const cityName = await axios.get(
       `http://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`
     );
-    const newCityName = `${cityName.data[0].name} ${response.data.name}`;
-    const newRespone = { ...response.data, name: newCityName };
+    // console.log('cityname', cityName);
+    const newCityName = `${cityName.data[0].name} ${response.data.name}`; // Seoul Pungnap-tong
+    const newResponse = { ...response.data, name: newCityName };
 
-    return newRespone;
+    return newResponse;
   } catch (err) {
     throw new Error('openweathermap API 통신 에러');
   }

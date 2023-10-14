@@ -17,6 +17,37 @@ export async function getRandomCockTail() {
   }
 }
 
+// glassType에 따른 랜덤 칵테일 하나를 반환하는 API 통신을 진행하는 함수
+export async function getGlassTypeAPI(glassType: string) {
+  try {
+    const response = await fetch(
+      `https://www.thecocktaildb.com/api/json/v1/1/filter.php?g=${glassType}`
+    );
+    if (!response.ok) {
+      throw new Error(
+        `칵테일 데이터를 가져오는 데 실패했습니다: ${response.statusText}`
+      );
+    }
+    if (response.headers.get('content-type')?.includes('application/json')) {
+      // const contentType = response.headers.get('content-type');
+      // console.log('contentType', contentType); // application.json
+      const data = await response.json();
+      const cocktailArr = data.drinks;
+      return cocktailArr;
+    } else {
+      console.error(
+        '서버로부터 예상치 못한 응답을 받았습니다. 나중에 다시 시도해 주세요.'
+      );
+    }
+  } catch (error) {
+    console.error(
+      '서버와 통신에 실패하였습니다. 나중에 다시 시도해주세요.',
+      error
+    );
+    throw error;
+  }
+}
+
 /**
  * 칵테일의 카테고리 목록을 반환하는 API 통신을 진행하는 함수
  * @returns 카테고리 목록에 대한 정보를 담은 배열
